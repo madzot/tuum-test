@@ -5,12 +5,10 @@ import com.tuum.backend.dtos.CreateTransactionDto;
 import com.tuum.backend.dtos.TransactionDto;
 import com.tuum.backend.errors.ApplicationException;
 import com.tuum.backend.services.TransactionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +19,7 @@ public class TransactionController {
     private final TransactionService transactionService;
 
     @PostMapping("/transaction")
-    public CompletedTransactionDto createTransaction(CreateTransactionDto dto) throws ApplicationException {
+    public CompletedTransactionDto createTransaction(@Valid @RequestBody CreateTransactionDto dto) throws ApplicationException {
         return transactionService.createTransaction(dto);
     }
 

@@ -5,6 +5,7 @@ import com.tuum.backend.dtos.CreateAccountDto;
 import com.tuum.backend.exceptions.AccountNotFoundException;
 import com.tuum.backend.exceptions.InvalidCurrencyException;
 import com.tuum.backend.services.AccountService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 public class AccountController {
     private final AccountService accountService;
     @PostMapping("/account")
-    public AccountDto createAccount(CreateAccountDto dto) throws InvalidCurrencyException {
+    public AccountDto createAccount(@Valid @RequestBody CreateAccountDto dto) throws InvalidCurrencyException {
         return accountService.createAccount(dto);
     }
 
