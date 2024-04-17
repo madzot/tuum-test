@@ -1,0 +1,34 @@
+services:
+  app:
+    image: backend
+    ports:
+      - '8080:8080'
+    build:
+      context: .
+    container_name: app
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRES_USER=tuum
+      - POSTGRES_PASSWORD=banking_solution
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=tuum
+      - SPRING_DATASOURCE_PASSWORD=banking_solution
+
+  postgres:
+    image: postgres:16.2
+    environment:
+      - POSTGRES_USER=tuum
+      - POSTGRES_PASSWORD=banking_solution
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+  rabbitmq:
+    image: rabbitmq:management
+    environment:
+      - RABBITMQ_DEFAULT_USER=tuum
+      - RABBITMQ_DEFAULT_PASS=banking_solution
+    ports:
+      - '5672:5672'
+      - '15672:15672'
