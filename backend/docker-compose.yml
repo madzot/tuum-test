@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:16.2
+    environment:
+      - POSTGRES_USER=tuum
+      - POSTGRES_PASSWORD=banking_solution
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+  rabbitmq:
+    image: rabbitmq:management
+    environment:
+      - RABBITMQ_DEFAULT_USER=tuum
+      - RABBITMQ_DEFAULT_PASS=banking_solution
+    ports:
+      - '5672:5672'
+      - '15672:15672'
