@@ -40,4 +40,8 @@ but I've made 3 base customers.
 
 ## Estimated transaction speed
 
-I ran a test with mocking the database and then it was able to create around 20,000 transaction per second.
+I ran a test with mocking the database, and then it was able to create around 20,000 transaction per second.
+
+
+# Database diagram
+![img.png](img.png)
